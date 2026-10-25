@@ -1,0 +1,5 @@
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+# Não usar FallbackResource nem reescrever tudo para index.html.
+# Rota desconhecida precisa continuar com status 404.

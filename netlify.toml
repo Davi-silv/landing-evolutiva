@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "build/client"
+
+# Arquivo existente tem prioridade. O que não existir responde 404
+# com a página de erro, sem cair no HTML da homepage.
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
