@@ -1,7 +1,7 @@
 const configuredUrl =
   (import.meta.env && import.meta.env.VITE_SITE_URL) ||
   (typeof process !== "undefined" && process.env && process.env.VITE_SITE_URL) ||
-  "https://evolutivatech.com.br";
+  "https://evolutiva-tech.com.br";
 
 export const siteUrl = configuredUrl.replace(/\/$/, "");
 

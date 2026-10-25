@@ -20,7 +20,7 @@ Site institucional em React, Vite e React Router, com as páginas públicas pré
 
 ## Antes de publicar
 
-1. Confirme o domínio em `VITE_SITE_URL` (padrão `https://evolutivatech.com.br`) e rode o build de novo.
+1. Confirme o domínio em `VITE_SITE_URL` (padrão `https://evolutiva-tech.com.br`) e rode o build de novo.
 2. Defina `VITE_LEAD_ENDPOINT` com um endereço que aceite `POST` e responda sucesso apenas quando gravar os dados. Sem isso, o formulário permanece desativado.
 3. Revise os preços sugeridos com o responsável. Eles estão marcados no site como valores a confirmar.
 

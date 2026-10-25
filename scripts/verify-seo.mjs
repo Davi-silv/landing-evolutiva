@@ -68,7 +68,7 @@ for (const [routePath, h1, title, indexable] of pages) {
   if (!description) fail(`${routePath} sem meta description`);
   if (description.length > 170) fail(`${routePath} description longa (${description.length})`);
   const canonical = attr(html, /<link rel="canonical" href="([^"]*)"/);
-  if (!canonical.startsWith("https://evolutivatech.com.br")) fail(`${routePath} canonical inválido: ${canonical}`);
+  if (!canonical.startsWith("https://evolutiva-tech.com.br")) fail(`${routePath} canonical inválido: ${canonical}`);
   for (const property of ["og:title", "og:description", "og:url", "og:image", "og:locale", "og:type"]) {
     if (!html.includes(`property="${property}"`)) fail(`${routePath} sem ${property}`);
   }
@@ -84,11 +84,11 @@ for (const [routePath, h1, title, indexable] of pages) {
 
 const sitemap = read(path.join(root, "sitemap.xml"));
 const robots = read(path.join(root, "robots.txt"));
-if (!robots.includes("Sitemap: https://evolutivatech.com.br/sitemap.xml")) fail("robots sem sitemap absoluto");
+if (!robots.includes("Sitemap: https://evolutiva-tech.com.br/sitemap.xml")) fail("robots sem sitemap absoluto");
 if (sitemap.includes("/404")) fail("sitemap contém a página 404");
 for (const [routePath, , , indexable] of pages) {
   if (!indexable) continue;
-  const loc = new URL(routePath, "https://evolutivatech.com.br/").href;
+  const loc = new URL(routePath, "https://evolutiva-tech.com.br/").href;
   if (!sitemap.includes(`<loc>${loc}</loc>`)) fail(`sitemap sem ${loc}`);
 }
 
