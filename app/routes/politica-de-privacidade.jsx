@@ -29,7 +29,7 @@ export default function PoliticaDePrivacidade() {
         </p>
         <h2>Para onde os dados vão</h2>
         <p>
-          O envio só acontece quando o site está configurado com um destino real. Esse destino é a ferramenta escolhida pelo responsável — por exemplo, um serviço de formulário ou um endpoint da própria empresa. Sem destino configurado, o botão permanece desativado e nada é transmitido.
+          Sem um destino técnico configurado, o pedido abre o WhatsApp (22) 99751-8427 com os dados preenchidos. A mensagem chega à Evolutiva Tech quando a pessoa confirma o envio na conversa. Se houver um destino técnico configurado, o mesmo pedido também segue para essa ferramenta.
         </p>
         <h2>Por quanto tempo ficam guardados</h2>
         <p>

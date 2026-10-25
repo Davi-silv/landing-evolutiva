@@ -1,5 +1,5 @@
 import { useEffect, useId, useState } from "react";
-import { leadEndpoint, services } from "../content/site.js";
+import { leadEndpoint, quoteWhatsAppUrl, services, site } from "../content/site.js";
 
 const empty = {
   nome: "",
@@ -65,13 +65,24 @@ export function LeadForm({ heading = "Conte o projeto" }) {
       return;
     }
 
+    const service = services.find((item) => item.id === values.servico);
+
     if (!configured) {
-      setStatus("error");
-      setFeedback("O formulário ainda não tem um destino de envio. Nenhuma mensagem foi transmitida.");
+      const url = quoteWhatsAppUrl({
+        nome: values.nome.trim(),
+        empresa: values.empresa.trim(),
+        whatsapp: values.whatsapp.trim(),
+        email: values.email.trim(),
+        servicoNome: service ? service.name : values.servico,
+        descricao: values.descricao.trim(),
+      });
+      const opened = window.open(url, "_blank", "noopener,noreferrer");
+      setStatus("success");
+      setFeedback(opened
+        ? `Abrimos o WhatsApp ${site.phoneDisplay}. O pedido chega quando você confirma o envio na conversa.`
+        : `O navegador bloqueou a nova aba. Use o botão de WhatsApp ${site.phoneDisplay} e envie o pedido por lá.`);
       return;
     }
-
-    const service = services.find((item) => item.id === values.servico);
     const body = new FormData();
     body.set("nome", values.nome.trim());
     body.set("empresa", values.empresa.trim());
@@ -116,8 +127,8 @@ export function LeadForm({ heading = "Conte o projeto" }) {
             Nome, empresa, WhatsApp, e-mail, serviço e uma descrição do projeto. A empresa pode ficar em branco se você ainda não tiver razão social.
           </p>
           {configured ? null : (
-            <p className="form-error" role="status">
-              Este formulário ainda não está ligado a um canal de recebimento. O botão fica desativado e nenhuma mensagem é transmitida.
+            <p role="status">
+              O pedido abre o WhatsApp {site.phoneDisplay}. A Evolutiva Tech recebe a mensagem quando você confirma o envio na conversa.
             </p>
           )}
         </div>
@@ -157,8 +168,8 @@ export function LeadForm({ heading = "Conte o projeto" }) {
           {feedback ? (
             <p className={status === "success" ? "form-success" : "form-error"} role="alert">{feedback}</p>
           ) : null}
-          <button className="btn btn-primary" type="submit" disabled={!configured || status === "sending"}>
-            {status === "sending" ? "Enviando..." : "Enviar pedido"}
+          <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
+            {status === "sending" ? "Enviando..." : configured ? "Enviar pedido" : "Enviar pelo WhatsApp"}
           </button>
         </form>
       </div>

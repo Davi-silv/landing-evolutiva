@@ -15,6 +15,7 @@ export const site = {
     "Software house que desenvolve sites, sistemas e automações para empresas.",
   phoneDisplay: "(22) 99751-8427",
   phoneE164: "+55-22-99751-8427",
+  phoneDigits: "5522997518427",
   whatsappUrl:
     "https://wa.me/5522997518427?text=" +
     encodeURIComponent("Olá, vim pelo site da Evolutiva Tech e quero falar sobre um projeto."),
@@ -24,6 +25,19 @@ export const site = {
 
 export const leadEndpoint =
   (import.meta.env && import.meta.env.VITE_LEAD_ENDPOINT) || "";
+
+export function quoteWhatsAppUrl({ nome, empresa, whatsapp, email, servicoNome, descricao }) {
+  const lines = [
+    "Olá, vim pelo site da Evolutiva Tech e quero um orçamento.",
+    `Nome: ${nome}`,
+    empresa ? `Empresa: ${empresa}` : "",
+    `WhatsApp: ${whatsapp}`,
+    `E-mail: ${email}`,
+    `Serviço: ${servicoNome}`,
+    `Projeto: ${descricao}`,
+  ].filter(Boolean);
+  return `https://wa.me/${site.phoneDigits}?text=${encodeURIComponent(lines.join("\n"))}`;
+}
 
 export const services = [
   {
@@ -586,7 +600,7 @@ export const pages = {
     description:
       "Envie um pedido de orçamento para a Evolutiva Tech. Informe nome, empresa, WhatsApp, e-mail, serviço e uma descrição do projeto.",
     h1: "Solicite um orçamento",
-    lead: "Conte o que a empresa precisa. O retorno usa o WhatsApp ou o e-mail que você informar, depois que os dados chegam ao destino configurado do formulário.",
+    lead: "Conte o que a empresa precisa. O pedido abre uma conversa no WhatsApp (22) 99751-8427, com os dados que você preencher.",
   },
   "politica-de-privacidade": {
     path: "/politica-de-privacidade",
